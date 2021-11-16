@@ -1,0 +1,22 @@
+{
+  "name": "crypto-price-lib",
+  "version": "1.0.0",
+  "description": "cyptocurrency price in real time",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdle94/crypto-price-lib.git"
+  },
+  "keywords": [
+    "crypto"
+  ],
+  "author": "Tuyen Le <tuyendle92@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdle94/crypto-price-lib/issues"
+  },
+  "homepage": "https://github.com/tdle94/crypto-price-lib#readme"
+}
