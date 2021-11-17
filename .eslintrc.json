@@ -1,11 +1,10 @@
 {
+    "root": true,
     "env": {
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "airbnb-base"
-    ],
+    "extends": "standard",
     "parserOptions": {
         "ecmaVersion": 13,
         "sourceType": "module"
