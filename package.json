@@ -20,9 +20,13 @@
   },
   "homepage": "https://github.com/tdle94/crypto-price-lib#readme",
   "devDependencies": {
-    "eslint": "^8.2.0",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-with-typescript": "^21.0.1",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
     "jest": "^27.3.1"
   }
 }
