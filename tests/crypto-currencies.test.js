@@ -1,5 +1,5 @@
 import CryptoCurrency from "../src/crypto-currency";
-import data from "./crypto-currency-data";
+import data from "./datas/crypto-currency";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
