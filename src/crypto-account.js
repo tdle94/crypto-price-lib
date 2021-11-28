@@ -7,6 +7,7 @@ export default class CryptoAccount {
         this.apiKey = apiKey;
         this.passphrase = passphrase;
         this.options = {
+            method: 'GET',
             headers: {
               Accept: 'application/json',
               'cb-access-key': `${this.apiKey}`,
@@ -14,9 +15,9 @@ export default class CryptoAccount {
             }  
         };
         
-        this.configureHeaderOptions = (method, timestamp, requestPath) => {
+        this.configureHeaderOptions = (timestamp, requestPath) => {
             const secret = 'fearofbeingmissingout';
-            const message = timestamp + method + requestPath;
+            const message = `${timestamp}GET${requestPath}`;
 
             const key = buffer(secret, 'base64');
             const hmac = crypto.createHmac('sha256', key);
@@ -25,34 +26,31 @@ export default class CryptoAccount {
 
             this.options.headers['cb-access-sign'] = cbAccessSign;
             this.options.headers['cb-access-timestamp'] = timestamp;
-            this.options.method = method;
+
             return cbAccessSign;
         };
     }
 
     async getAllAccountsForAProfile() {
         const timestamp = Date.now();
-        const method = 'GET';
         const requestPath = '/accounts';
 
-        this.configureHeaderOptions(method, timestamp, requestPath);
+        this.configureHeaderOptions(timestamp, requestPath);
 
         return request('https://api.exchange.coinbase.com/accounts', this.options);
     }
 
     async getSingleAccount(id) {
         const timestamp = Date.now();
-        const method = 'GET';
         const requestPath = '/accounts/account_id';
 
-        this.configureHeaderOptions(method, timestamp, requestPath);
+        this.configureHeaderOptions(timestamp, requestPath);
 
         return request(`https://api.exchange.coinbase.com/accounts/account_id/${id}`, this.options);
     }
 
     async getSingleAccountHolds(id, beforeDate, afterDate, limit) {
         const timestamp = Date.now();
-        const method = 'GET';
         const requestPath = `/accounts/${id}/holds`;
 
         var link = `https://api.exchange.coinbase.com/accounts/${id}/holds`;
@@ -69,7 +67,7 @@ export default class CryptoAccount {
             link = `${link}?limit=${limit}`;
         }
         
-        this.configureHeaderOptions(method, timestamp, requestPath);
+        this.configureHeaderOptions(timestamp, requestPath);
 
         return request(link, this.options);
     }
