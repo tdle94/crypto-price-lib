@@ -5,26 +5,26 @@ import singleCryptoCurrency from "./datas/gtc-currency";
 
 jest.mock("../src/request");
 
-describe("all crypto currencies", () => {  
-  test("fetch all crypto currencies available", async () => {
-    request.mockReturnValue(Promise.resolve(allCryptoCurrency));
+describe("crypto currency", () => {
+  const crypto = new CryptoCurrency();
 
-    const crypto = new CryptoCurrency();
-
-    return crypto.getAll().then(data => {  
-      expect(data[0].id).toEqual("DASH");
+  describe("all currencies", () => {  
+    test("fetch all crypto currencies available", async () => {
+      request.mockReturnValue(Promise.resolve(allCryptoCurrency));
+  
+      return crypto.getAll().then(data => {  
+        expect(data[0].id).toEqual("DASH");
+      });
     });
   });
-});
-
-describe("gtc currency", () => {
-  test("fetch gtc currency", async () => {
-    request.mockReturnValue(Promise.resolve(singleCryptoCurrency));
-
-    const crypto = new CryptoCurrency();
-
-    return crypto.get("GTC").then(data => {  
-      expect(data.id).toEqual("GTC");
+  
+  describe("gtc currency", () => {
+    test("fetch gtc currency", async () => {
+      request.mockReturnValue(Promise.resolve(singleCryptoCurrency));
+  
+      return crypto.get("GTC").then(data => {  
+        expect(data.id).toEqual("GTC");
+      });
     });
   });
 });
