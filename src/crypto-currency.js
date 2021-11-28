@@ -1,9 +1,11 @@
 export default class CryptoCurrency {
-    async getAll() {
-        const options = { method: "GET", headers: { Accept: "application/json" } };
+    constructor() {
+        this.options = { method: "GET", headers: { Accept: "application/json" } };
+    }
 
+    async getAll() {
         try {
-            return await fetch("https://api.exchange.coinbase.com/currencies", options)    
+            return await fetch("https://api.exchange.coinbase.com/currencies", this.options)    
             .then(response => response.json());
         } catch (error) {
             return Promise.reject(Error(error));
@@ -11,10 +13,8 @@ export default class CryptoCurrency {
     }
 
     async get(currencyId) {
-        const options = {method: "GET", headers: {Accept: "application/json"}};
-
         try {
-            return await fetch(`https://api.exchange.coinbase.com/currencies/${currencyId}`, options)
+            return await fetch(`https://api.exchange.coinbase.com/currencies/${currencyId}`, this.options)
             .then(response => response.json());
         } catch (error) {
             return Promise.reject(Error(error));
