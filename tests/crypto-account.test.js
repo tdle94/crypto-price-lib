@@ -21,7 +21,7 @@ describe("crypto Account", () => {
 
     const cryptoAccount = new CryptoAccount("anykey", "hello");
 
-    describe("cll Accounts", () => {
+    describe("all Accounts", () => {
         test("fetch all crypto accounts", async () => {
             request.mockReturnValue(Promise.resolve(allCryptoAccount));
 
