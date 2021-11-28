@@ -1,4 +1,4 @@
-export const request = async (url, options) => {
+export default async (url, options) => {
     try {
         return await fetch(url, options)
         .then(response => response.json());
