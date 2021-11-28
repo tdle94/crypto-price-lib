@@ -106,4 +106,31 @@ export default class CryptoAccount {
 
         return request(link, this.options);
     }
+
+    async getSingleAccountTransfer(id, before, after, limit, type) {
+        const timestamp = Date().now;
+        const requestPath = `/accounts/${id}/transfers`;
+
+        var link = `https://api.exchange.coinbase.com/accounts/${id}/transfers`;
+
+        if (before !== undefined) {
+            link = `${link}?before=${before}`;
+        } 
+
+        if (after !== undefined) {
+            link = `${link}&after=${after}`;
+        }
+
+        if (limit !== undefined) {
+            link = `${link}&limit=${limit}`;
+        }
+
+        if (type !== undefined) {
+            link = `${link}&type=${type}`;
+        }
+
+        this.configureHeaderOptions(timestamp, requestPath);
+
+        return request(link, this.options);
+    }
 }
