@@ -49,24 +49,59 @@ export default class CryptoAccount {
         return request(`https://api.exchange.coinbase.com/accounts/account_id/${id}`, this.options);
     }
 
-    async getSingleAccountHolds(id, beforeDate, afterDate, limit) {
+    async getSingleAccountHolds(id, before, after, limit) {
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/holds`;
 
         var link = `https://api.exchange.coinbase.com/accounts/${id}/holds`;
 
-        if (beforeDate !== undefined) {
-            link = `${link}?before=${beforeDate}`;
+        if (before !== undefined) {
+            link = `${link}?before=${before}`;
         }
 
-        if (afterDate !== undefined) {
-            link = `${link}?after=${afterDate}`;
+        if (after !== undefined) {
+            link = `${link}&after=${after}`;
         }
 
         if (limit !== undefined) {
-            link = `${link}?limit=${limit}`;
+            link = `${link}&limit=${limit}`;
         }
         
+        this.configureHeaderOptions(timestamp, requestPath);
+
+        return request(link, this.options);
+    }
+
+    async getSingleAccountLedger(id, startDate, endDate, before, after, limit, profileId) {
+        const timestamp = Date.now();
+        const requestPath = `/accounts/${id}/ledger`;
+
+        var link = `https://api.exchange.coinbase.com/accounts/${id}/ledger`;
+
+        if (startDate !== undefined) {
+            link = `${link}?start_date=${startDate}`;
+        }
+
+        if (endDate !== undefined) {
+            link = `${link}&end_date=${endDate}`;
+        }
+
+        if (before !== undefined) {
+            link = `${link}&before=${before}`;
+        }
+
+        if (after !== undefined) {
+            link = `${link}&after=${after}`;
+        }
+
+        if (limit !== undefined) {
+            link = `${link}&start_date=${limit}`;
+        }
+
+        if (profileId !== undefined) {
+            link = `${link}&profile_id=${profileId}`;
+        }
+
         this.configureHeaderOptions(timestamp, requestPath);
 
         return request(link, this.options);
