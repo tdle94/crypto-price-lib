@@ -22,4 +22,4 @@ export default {
       "min_withdrawal_amount": 1e-18,
       "max_withdrawal_amount": 20700
     }
-  }
+  };
