@@ -43,7 +43,7 @@ export default class CryptoAccount {
     async getSingleAccount(id) {
         const timestamp = Date.now();
         const method = "GET";
-        const requestPath = "/account_id";
+        const requestPath = "/accounts/account_id";
 
         this.configureHeaderOptions(method, timestamp, requestPath);
 
