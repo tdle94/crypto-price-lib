@@ -49,4 +49,28 @@ export default class CryptoAccount {
 
         return request(`https://api.exchange.coinbase.com/accounts/account_id/${id}`, this.options);
     }
+
+    async getSingleAccountHolds(id, beforeDate, afterDate, limit) {
+        const timestamp = Date.now();
+        const method = 'GET';
+        const requestPath = `/accounts/${id}/holds`;
+
+        var link = `https://api.exchange.coinbase.com/accounts/${id}/holds`;
+
+        if (beforeDate !== undefined) {
+            link = `${link}?before=${beforeDate}`;
+        }
+
+        if (afterDate !== undefined) {
+            link = `${link}?after=${afterDate}`;
+        }
+
+        if (limit !== undefined) {
+            link = `${link}?limit=${limit}`;
+        }
+        
+        this.configureHeaderOptions(method, timestamp, requestPath);
+
+        return request(link, this.options);
+    }
 }
