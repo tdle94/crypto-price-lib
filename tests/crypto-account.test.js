@@ -3,6 +3,7 @@ import request from '../src/request';
 import allCryptoAccount from './datas/all-crypto-account';
 import singleCryptoAccount from './datas/single-crypto-account';
 import singleCryptoAccountHolds from './datas/single-crypto-account-holds';
+import singleCryptoAccountLedger from './datas/single-crypto-account-ledger';
 import crypto from 'crypto-js';
 
 jest.mock('../src/request');
@@ -49,6 +50,16 @@ describe('crypto Account', () => {
             cryptoAccount
             .getSingleAccountHolds(21)
             .then(data => expect(data[0].id).toEqual('c5cdd687-2d03-4a87-8dd7-c693a4bb766f'));
+        });
+    });
+
+    describe('single account ledger', () => {
+        test('fetch single account ledger with only id', async () => {
+            request.mockReturnValue(Promise.resolve(singleCryptoAccountLedger));
+
+            cryptoAccount
+            .getSingleAccountLedger(21)
+            .then(data => expect(data[0].id).toEqual('1444415179'));
         });
     });
 });
