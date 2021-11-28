@@ -25,7 +25,7 @@ export default class CryptoAccount {
 
             this.options.headers["cb-access-sign"] = cbAccessSign;
             this.options.headers["cb-access-timestamp"] = timestamp;
-            this.options["method"] = method;
+            this.options.method = method;
             return cbAccessSign;
         };
     }
