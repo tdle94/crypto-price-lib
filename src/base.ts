@@ -1,17 +1,18 @@
 import { Buffer } from 'buffer';
 import URLRequest from './url-request';
 import crypto from 'crypto-js';
+import RequestOptions from './url-request-option';
 
 export default class Base {
     urlRequest: URLRequest = new URLRequest();
-    options = {
+    options: RequestOptions = {
         method: '',
         headers: {
             Accept: 'application/json'
         }
-    };
+    }
     
-    constructor(apiKey, passphrase) {
+    constructor(apiKey: string, passphrase: string) {
         this.urlRequest.scheme = 'https';
         this.urlRequest.host = 'api.exchange.coinbase.com';
 
@@ -24,7 +25,7 @@ export default class Base {
         }
     }
 
-    configureHeaderOptions(method, timestamp, requestPath) {
+    configureHeaderOptions(method: string, timestamp: number, requestPath: string) {
         if (timestamp !== undefined) {
             const secret = 'fearofbeingmissingout';
             const message = `${timestamp}${method}${requestPath}`;
@@ -40,7 +41,7 @@ export default class Base {
         this.configureHeader(method, requestPath);
     }
 
-    configureHeader(method, requestPath) {
+    configureHeader(method: string, requestPath: string) {
         this.options.method = method;
         this.urlRequest.path = requestPath;
     }

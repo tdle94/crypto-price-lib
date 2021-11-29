@@ -12,7 +12,7 @@ export default class CoinbaseAccount extends Base {
         return request(this.urlRequest.getURLString(), this.options);
     }
 
-    async generateCryptoAddress(id) {
+    async generateCryptoAddress(id: number) {
         const method = 'POST';
         const requestPath = `/coinbase-accounts/${id}/addresses`;
         const timestamp = Date.now();

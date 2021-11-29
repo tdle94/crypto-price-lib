@@ -11,7 +11,7 @@ export default class CryptoCurrency extends Base {
         return request(this.urlRequest.getURLString(), this.options);
     }
 
-    async get(currencyId) {
+    async get(currencyId: string) {
         const requestPath = `/currencies/${currencyId}`;
         const method = 'GET';
 
