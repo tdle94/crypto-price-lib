@@ -27,7 +27,7 @@ export default class CryptoAccount extends Base {
         return request(this.urlRequest.getURLString(),this.options);
     }
 
-    async getSingleAccountHolds(id: number, before: string, after: string, limit: number) {
+    async getSingleAccountHolds(id: number, before?: string, after?: string, limit?: number) {
         const method = 'GET';
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/holds`;
@@ -43,7 +43,7 @@ export default class CryptoAccount extends Base {
         return request(this.urlRequest.getURLString(), this.options);
     }
 
-    async getSingleAccountLedger(id: number, startDate: string, endDate: string, before: string, after: string, limit: number, profileId: number) {
+    async getSingleAccountLedger(id: number, startDate?: string, endDate?: string, before?: string, after?: string, limit?: number, profileId?: number) {
         const method = 'GET';
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/ledger`;
@@ -62,7 +62,7 @@ export default class CryptoAccount extends Base {
         return request(this.urlRequest.getURLString(), this.options);
     }
 
-    async getSingleAccountTransfer(id: number, before: string, after: string, limit: number, type: string) {
+    async getSingleAccountTransfer(id: number, before?: string, after?: string, limit?: number, type?: string) {
         const method = 'GET';
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/transfers`;
