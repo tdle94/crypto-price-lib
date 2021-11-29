@@ -1,6 +1,6 @@
+import { URLQueryItem } from './url-request';
 import request from './request';
 import Base from './base';
-import { URLQueryItem } from './url-request';
 
 export default class CryptoAccount extends Base {
     constructor(apiKey, passphrase) {
