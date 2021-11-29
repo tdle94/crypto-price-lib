@@ -1,11 +1,15 @@
 import crypto from 'crypto-js';
 import buffer from 'buffer';
 import request from './request';
+import URLRequest, { URLQueryItem } from './url-request';
 
 export default class CryptoAccount {
     constructor(apiKey, passphrase) {
         this.apiKey = apiKey;
         this.passphrase = passphrase;
+        this.urlRequest = new URLRequest();
+        this.urlRequest.scheme = 'https';
+        this.urlRequest.host = 'api.exchange.coinbase.com';
         this.options = {
             method: 'GET',
             headers: {
@@ -27,6 +31,8 @@ export default class CryptoAccount {
             this.options.headers['cb-access-sign'] = cbAccessSign;
             this.options.headers['cb-access-timestamp'] = timestamp;
 
+            this.urlRequest.path = requestPath;
+
             return cbAccessSign;
         };
     }
@@ -37,100 +43,64 @@ export default class CryptoAccount {
 
         this.configureHeaderOptions(timestamp, requestPath);
 
-        return request('https://api.exchange.coinbase.com/accounts', this.options);
+        return request(this.urlRequest.getURLString(), this.options);
     }
 
     async getSingleAccount(id) {
         const timestamp = Date.now();
-        const requestPath = '/accounts/account_id';
+        const requestPath = `/accounts/account_id/${id}`;
 
         this.configureHeaderOptions(timestamp, requestPath);
 
-        return request(`https://api.exchange.coinbase.com/accounts/account_id/${id}`, this.options);
+        return request(this.urlRequest.getURLString(), this.options);
     }
 
     async getSingleAccountHolds(id, before, after, limit) {
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/holds`;
 
-        var link = `https://api.exchange.coinbase.com/accounts/${id}/holds`;
-
-        if (before !== undefined) {
-            link = `${link}?before=${before}`;
-        }
-
-        if (after !== undefined) {
-            link = `${link}&after=${after}`;
-        }
-
-        if (limit !== undefined) {
-            link = `${link}&limit=${limit}`;
-        }
+        this.urlRequest.queryItems = [
+            new URLQueryItem('before', before),
+            new URLQueryItem('after', after),
+            new URLQueryItem('limit', limit),
+        ];
         
         this.configureHeaderOptions(timestamp, requestPath);
 
-        return request(link, this.options);
+        return request(this.urlRequest.getURLString(), this.options);
     }
 
     async getSingleAccountLedger(id, startDate, endDate, before, after, limit, profileId) {
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/ledger`;
 
-        var link = `https://api.exchange.coinbase.com/accounts/${id}/ledger`;
-
-        if (startDate !== undefined) {
-            link = `${link}?start_date=${startDate}`;
-        }
-
-        if (endDate !== undefined) {
-            link = `${link}&end_date=${endDate}`;
-        }
-
-        if (before !== undefined) {
-            link = `${link}&before=${before}`;
-        }
-
-        if (after !== undefined) {
-            link = `${link}&after=${after}`;
-        }
-
-        if (limit !== undefined) {
-            link = `${link}&start_date=${limit}`;
-        }
-
-        if (profileId !== undefined) {
-            link = `${link}&profile_id=${profileId}`;
-        }
+        this.urlRequest.queryItems = [
+            new URLQueryItem('start_date', startDate),
+            new URLQueryItem('end_date', endDate),
+            new URLQueryItem('before', before),
+            new URLQueryItem('after', after),
+            new URLQueryItem('limit', limit),
+            new URLQueryItem('profile_id', profileId),
+        ];
 
         this.configureHeaderOptions(timestamp, requestPath);
 
-        return request(link, this.options);
+        return request(this.urlRequest.getURLString(), this.options);
     }
 
     async getSingleAccountTransfer(id, before, after, limit, type) {
-        const timestamp = Date().now;
+        const timestamp = Date.now();
         const requestPath = `/accounts/${id}/transfers`;
 
-        var link = `https://api.exchange.coinbase.com/accounts/${id}/transfers`;
-
-        if (before !== undefined) {
-            link = `${link}?before=${before}`;
-        } 
-
-        if (after !== undefined) {
-            link = `${link}&after=${after}`;
-        }
-
-        if (limit !== undefined) {
-            link = `${link}&limit=${limit}`;
-        }
-
-        if (type !== undefined) {
-            link = `${link}&type=${type}`;
-        }
+        this.urlRequest.queryItems = [
+            new URLQueryItem('before', before),
+            new URLQueryItem('after', after),
+            new URLQueryItem('limit', limit),
+            new URLQueryItem('type', type),
+        ];
 
         this.configureHeaderOptions(timestamp, requestPath);
 
-        return request(link, this.options);
+        return request(this.urlRequest.getURLString(), this.options);
     }
 }
