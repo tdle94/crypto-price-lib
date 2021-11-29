@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import CryptoAccount from '../src/crypto-account';
 import request from '../src/request';
 import allCryptoAccount from './datas/all-crypto-account';
@@ -8,7 +9,7 @@ import singleCryptoAccountTransfer from './datas/single-crypto-account-transfer'
 import crypto from 'crypto-js';
 
 jest.mock('../src/request');
-jest.mock('buffer', () => jest.fn());
+jest.mock('Buffer', () => jest.fn());
 
 Date.now = jest.fn(() => 1487076708000);
 
@@ -22,6 +23,8 @@ describe('crypto Account', () => {
             }
         };
     };
+
+    Buffer.from = jest.fn();
 
     const cryptoAccount = new CryptoAccount('anykey', 'hello');
 

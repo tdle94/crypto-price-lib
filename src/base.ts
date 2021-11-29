@@ -1,19 +1,19 @@
+import { Buffer } from 'buffer';
 import URLRequest from './url-request';
-import buffer from 'buffer';
 import crypto from 'crypto-js';
 
 export default class Base {
-
+    urlRequest: URLRequest = new URLRequest();
+    options = {
+        method: '',
+        headers: {
+            Accept: 'application/json'
+        }
+    };
+    
     constructor(apiKey, passphrase) {
-        this.urlRequest = new URLRequest();
         this.urlRequest.scheme = 'https';
         this.urlRequest.host = 'api.exchange.coinbase.com';
-
-        this.options = {
-            headers: {
-                Accept: 'application/json'
-            }
-        };
 
         if (apiKey !== undefined) {
             this.options.headers['cb-access-key'] = apiKey;
@@ -29,7 +29,7 @@ export default class Base {
             const secret = 'fearofbeingmissingout';
             const message = `${timestamp}${method}${requestPath}`;
 
-            const key = buffer(secret, 'base64');
+            const key = Buffer.from(secret, 'base64');
             const hmac = crypto.createHmac('sha256', key);
             const cbAccessSign = hmac.update(message).digest('base64');
 
