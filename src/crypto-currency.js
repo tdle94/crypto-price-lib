@@ -1,21 +1,22 @@
 import request from './request';
-import URLRequest from './url-request';
+import Base from './base';
 
-export default class CryptoCurrency {
-    constructor() {
-        this.options = { method: 'GET', headers: { Accept: 'application/json' } };
-        this.urlRequest = new URLRequest();
-        this.urlRequest.scheme = 'https';
-        this.urlRequest.host = 'api.exchange.coinbase.com';
-    }
-
+export default class CryptoCurrency extends Base {
     async getAll() {
-        this.urlRequest.path = '/currencies';
+        const requestPath = '/currencies';
+        const method = 'GET';
+
+        super.configureHeader(method, requestPath);
+
         return request(this.urlRequest.getURLString(), this.options);
     }
 
     async get(currencyId) {
-        this.urlRequest.path = `/currencies/${currencyId}`;
+        const requestPath = `/currencies/${currencyId}`;
+        const method = 'GET';
+
+        super.configureHeader(method, requestPath);
+
         return request(this.urlRequest.getURLString(), this.options);
     }
 }
