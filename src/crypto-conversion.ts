@@ -1,3 +1,4 @@
+import { URLQueryItem } from './url-request';
 import request from './request';
 import Base from './base';
 
@@ -18,6 +19,7 @@ export default class CryptoConversion extends Base {
         }
 
         this.options.body = JSON.stringify(requestBody);
+        this.options.headers['Content-Type'] = 'application/json';
         
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -27,13 +29,11 @@ export default class CryptoConversion extends Base {
         const timestamp = Date.now();
         const requestPath = `/conversions/${conversionId}`;
 
+        this.urlRequest.queryItems = [
+            new URLQueryItem('profile_id', profileId)
+        ]
+
         this.configureHeaderOptions(method, timestamp, requestPath);
-
-        const requestBody: CryptoConversion.GetAConversionBody = {
-            profile_id: profileId
-        }
-
-        this.options.body = JSON.stringify(requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -46,9 +46,5 @@ namespace CryptoConversion {
         amount: string,
         profile_id?: string,
         nonce?: string
-    }
-
-    export interface GetAConversionBody {
-        profile_id?: string,
     }
 }
