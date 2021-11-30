@@ -5,27 +5,34 @@ import RequestOptions from './url-request-option';
 
 export default class Base {
     urlRequest: URLRequest = new URLRequest();
+    apiKey: string;
+    passphrase: string;
     options: RequestOptions = {
         method: '',
         headers: {
             Accept: 'application/json'
         }
-    }
+    };
     
-    constructor(apiKey: string, passphrase: string) {
+    constructor(apiKey?: string, passphrase?: string) {
         this.urlRequest.scheme = 'https';
         this.urlRequest.host = 'api.exchange.coinbase.com';
-
-        if (apiKey !== undefined) {
-            this.options.headers['cb-access-key'] = apiKey;
-        }
-
-        if (passphrase !== undefined) {
-            this.options.headers['cb-access-passphrase'] = passphrase;
-        }
+        this.apiKey = apiKey;
+        this.passphrase = passphrase;
     }
 
     configureHeaderOptions(method: string, timestamp: number, requestPath: string) {
+
+        this.configureHeader(method, requestPath);
+
+        if (this.apiKey !== undefined) {
+            this.options.headers['cb-access-key'] = this.apiKey;
+        }
+
+        if (this.passphrase !== undefined) {
+            this.options.headers['cb-access-passphrase'] = this.passphrase;
+        }
+
         if (timestamp !== undefined) {
             const secret = 'fearofbeingmissingout';
             const message = `${timestamp}${method}${requestPath}`;
@@ -37,12 +44,16 @@ export default class Base {
             this.options.headers['cb-access-sign'] = cbAccessSign;
             this.options.headers['cb-access-timestamp'] = timestamp;
         }
-        
-        this.configureHeader(method, requestPath);
     }
 
     configureHeader(method: string, requestPath: string) {
-        this.options.method = method;
+        this.urlRequest.queryItems = [];
         this.urlRequest.path = requestPath;
+        this.options = {
+            method,
+            headers: {
+                Accept: 'application/json'
+            }
+        };
     }
 }
