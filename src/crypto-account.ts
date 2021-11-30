@@ -32,13 +32,13 @@ export default class CryptoAccount extends Base {
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/holds`;
 
+        this.configureHeaderOptions(method, timestamp, requestPath);
+
         this.urlRequest.queryItems = [
             new URLQueryItem('before', before),
             new URLQueryItem('after', after),
             new URLQueryItem('limit', limit),
         ];
-        
-        this.configureHeaderOptions(method, timestamp, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -47,6 +47,8 @@ export default class CryptoAccount extends Base {
         const method = 'GET';
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/ledger`;
+
+        this.configureHeaderOptions(method, timestamp, requestPath);
 
         this.urlRequest.queryItems = [
             new URLQueryItem('start_date', startDate),
@@ -57,8 +59,6 @@ export default class CryptoAccount extends Base {
             new URLQueryItem('profile_id', profileId),
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath);
-
         return request(this.urlRequest.getURLString(), this.options);
     }
 
@@ -67,14 +67,14 @@ export default class CryptoAccount extends Base {
         const timestamp = Date.now();
         const requestPath = `/accounts/${id}/transfers`;
 
+        this.configureHeaderOptions(method, timestamp, requestPath);
+
         this.urlRequest.queryItems = [
             new URLQueryItem('before', before),
             new URLQueryItem('after', after),
             new URLQueryItem('limit', limit),
             new URLQueryItem('type', type),
         ];
-
-        this.configureHeaderOptions(method, timestamp, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
