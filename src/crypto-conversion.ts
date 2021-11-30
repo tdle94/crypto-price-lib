@@ -6,7 +6,7 @@ export default class CryptoConversion extends Base {
     async convertCurrency(from: string, to: string, amount: string, profileId?: string, nonce?: string) {
         const method = 'POST';
         const timestamp = Date.now();
-        const requestPath = `/conversions`;
+        const requestPath = '/conversions';
 
         this.configureHeaderOptions(method, timestamp, requestPath);
 
