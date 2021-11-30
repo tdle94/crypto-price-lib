@@ -29,11 +29,11 @@ export default class CryptoConversion extends Base {
         const timestamp = Date.now();
         const requestPath = `/conversions/${conversionId}`;
 
+        this.configureHeaderOptions(method, timestamp, requestPath);
+
         this.urlRequest.queryItems = [
             new URLQueryItem('profile_id', profileId)
         ]
-
-        this.configureHeaderOptions(method, timestamp, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
