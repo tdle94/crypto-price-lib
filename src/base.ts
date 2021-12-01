@@ -22,11 +22,16 @@ export default class Base {
         this.passphrase = passphrase;
     }
 
-    configureHeaderOptions(method: string, timestamp: number, requestPath: string, urlQueryItems: queryItems[] = []) {
+    configureHeaderOptions(method: string, timestamp: number, requestPath: string, requestBody: {} = {}, urlQueryItems: queryItems[] = []) {
 
         this.configureHeader(method, requestPath);
 
         this.urlRequest.queryItems = urlQueryItems;
+        
+        if (requestBody !== undefined && Object.keys(requestBody).length > 0) {
+            this.options.body = JSON.stringify(requestBody);
+            this.options.headers['Content-Type'] = 'application/json';
+        }
 
         if (this.apiKey !== undefined) {
             this.options.headers['cb-access-key'] = this.apiKey;
