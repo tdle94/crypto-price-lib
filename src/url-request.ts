@@ -22,9 +22,25 @@ export default class URLRequest {
         this.queryItems.forEach( (item, index) => {
             if (item.value !== undefined) {
                 if (index === 0) {
-                    fullURL = `${fullURL}?${item.name}=${item.name}`;
+                    if (Array.isArray(item.value)) {
+                        item.value.forEach((element, index) => {
+                            if (index == 0) {
+                                fullURL = `${fullURL}?${element.name}=${element.name}`;
+                            } else {
+                                fullURL = `${fullURL}&${element.name}=${element.name}`;
+                            }
+                        })
+                    } else {
+                        fullURL = `${fullURL}?${item.name}=${item.name}`;
+                    }
                 } else {
-                    fullURL = `${fullURL}&${item.name}=${item.name}`;
+                    if (Array.isArray(item.value)) {
+                        item.value.forEach(element => {
+                            fullURL = `${fullURL}&${element.name}=${element.name}`;
+                        })
+                    } else {
+                        fullURL = `${fullURL}&${item.name}=${item.name}`;
+                    }
                 }
             }
         });
