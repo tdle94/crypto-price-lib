@@ -7,33 +7,28 @@ export default class CryptoConversion extends Base {
         const method = 'POST';
         const timestamp = Date.now();
         const requestPath = '/conversions';
-
-        this.configureHeaderOptions(method, timestamp, requestPath);
-
         const requestBody: CryptoConversion.ConvertCurrencyBody = {
             from,
             to,
             amount,
             nonce,
             profile_id: profileId
-        }
+        };
 
-        this.options.body = JSON.stringify(requestBody);
-        this.options.headers['Content-Type'] = 'application/json';
+        this.configureHeaderOptions(method, timestamp, requestPath, requestBody);
         
         return request(this.urlRequest.getURLString(), this.options);
     }
 
-    async getAConversion(conversionId: string, profileId?: string) {
+    async getAConversion(conversionId: string, profileId?: string, path?: {}) {
         const method = 'GET';
         const timestamp = Date.now();
         const requestPath = `/conversions/${conversionId}`;
-
-        this.configureHeaderOptions(method, timestamp, requestPath);
-
-        this.urlRequest.queryItems = [
+        const queryItems = [
             new URLQueryItem('profile_id', profileId)
-        ]
+        ];
+
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }

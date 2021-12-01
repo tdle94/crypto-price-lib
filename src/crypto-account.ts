@@ -38,7 +38,7 @@ export default class CryptoAccount extends Base {
             new URLQueryItem('limit', limit)
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -57,7 +57,7 @@ export default class CryptoAccount extends Base {
             new URLQueryItem('profile_id', profileId)
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -74,7 +74,7 @@ export default class CryptoAccount extends Base {
             new URLQueryItem('type', type)
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }

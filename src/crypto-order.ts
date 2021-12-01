@@ -17,7 +17,7 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('after', after)
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -40,7 +40,7 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('sorting', sorting)
         ];
         
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -55,7 +55,7 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('profile_id', profileId)
         ]
 
-        this.configureHeaderOptions(method, timestamp, requestPath, queryItems);
+        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
