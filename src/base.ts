@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer';
+import { URLQueryItem as queryItems } from './url-request';
 import URLRequest from './url-request';
 import crypto from 'crypto-js';
 import RequestOptions from './url-request-option';
@@ -21,9 +22,11 @@ export default class Base {
         this.passphrase = passphrase;
     }
 
-    configureHeaderOptions(method: string, timestamp: number, requestPath: string) {
+    configureHeaderOptions(method: string, timestamp: number, requestPath: string, urlQueryItems: queryItems[] = []) {
 
         this.configureHeader(method, requestPath);
+
+        this.urlRequest.queryItems = urlQueryItems;
 
         if (this.apiKey !== undefined) {
             this.options.headers['cb-access-key'] = this.apiKey;
