@@ -7,7 +7,7 @@ export default class CryptoConversion extends Base {
         const method = 'POST';
         const timestamp = Date.now();
         const requestPath = '/conversions';
-        const requestBody: CryptoConversion.ConvertCurrencyBody = {
+        const requestBody: CryptoConversion.CurrencyBody = {
             from,
             to,
             amount,
@@ -35,7 +35,7 @@ export default class CryptoConversion extends Base {
 }
 
 namespace CryptoConversion {
-    export interface ConvertCurrencyBody {
+    export interface CurrencyBody {
         from: string,
         to: string,
         amount: string,
