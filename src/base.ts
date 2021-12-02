@@ -22,8 +22,9 @@ export default class Base {
         this.passphrase = passphrase;
     }
 
-    configureHeaderOptions(method: string, timestamp: number, requestPath: string, requestBody: {} = {}, urlQueryItems: queryItems[] = []) {
-
+    configureHeaderOptions(method: string, requestPath: string, requestBody: {} = {}, urlQueryItems: queryItems[] = []) {
+        const timestamp = Date.now()
+        
         this.configureHeader(method, requestPath);
 
         this.urlRequest.queryItems = urlQueryItems;
@@ -41,17 +42,17 @@ export default class Base {
             this.options.headers['cb-access-passphrase'] = this.passphrase;
         }
 
-        if (timestamp !== undefined) {
-            const secret = 'fearofbeingmissingout';
-            const message = `${timestamp}${method}${requestPath}`;
 
-            const key = Buffer.from(secret, 'base64');
-            const hmac = crypto.createHmac('sha256', key);
-            const cbAccessSign = hmac.update(message).digest('base64');
+        const secret = 'fearofbeingmissingout';
+        const message = `${timestamp}${method}${requestPath}`;
 
-            this.options.headers['cb-access-sign'] = cbAccessSign;
-            this.options.headers['cb-access-timestamp'] = timestamp;
-        }
+        const key = Buffer.from(secret, 'base64');
+        const hmac = crypto.createHmac('sha256', key);
+        const cbAccessSign = hmac.update(message).digest('base64');
+
+        this.options.headers['cb-access-sign'] = cbAccessSign;
+        this.options.headers['cb-access-timestamp'] = timestamp;
+
     }
 
     configureHeader(method: string, requestPath: string) {

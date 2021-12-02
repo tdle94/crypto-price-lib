@@ -5,7 +5,6 @@ import Base from './base';
 export default class CryptoOrder extends Base {
     async getAllFills(orderId?: string, productId?: string, profileId?: string, limit?: number, before?: number, after?: number) {
         const method = 'POST';
-        const timestamp = Date.now();
         const requestPath = '/fills';
 
         const queryItems = [
@@ -17,14 +16,13 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('after', after)
         ];
 
-        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
+        this.configureHeaderOptions(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
 
     async getAllOrders(limit: number, status: [string], profileId?: string, productId?: string, startDate?: Date, endDate?: Date, before?: string, after?: string, sortedBy: string = 'created_at', sorting: string = 'desc',) {
         const method = 'POST';
-        const timestamp = Date.now();
         const requestPath = '/orders';
 
         const queryItems = [
@@ -40,14 +38,13 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('sorting', sorting)
         ];
         
-        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
+        this.configureHeaderOptions(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
 
     async cancelAllOrders(profileId?: string, productId?: string) {
         const method = 'DELETE';
-        const timestamp = Date.now();
         const requestPath = '/orders';
 
         const queryItems = [
@@ -55,7 +52,7 @@ export default class CryptoOrder extends Base {
             new URLQueryItem('profile_id', profileId)
         ]
 
-        this.configureHeaderOptions(method, timestamp, requestPath, {}, queryItems);
+        this.configureHeaderOptions(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
