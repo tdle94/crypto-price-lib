@@ -1,12 +1,13 @@
-import { Buffer } from 'buffer';
 import CoinbaseAccount from '../src/coinbase-account';
 import coinbaseWallet from './datas/coinbase-wallet';
 import cryptoAddress from './datas/crypto-address';
 import request from '../src/request';
 import crypto from 'crypto-js';
 
-jest.mock('../src/request');
-jest.mock('Buffer', () => jest.fn());
+jest.mock('../src/request', () => jest.fn());
+jest.mock('Buffer', () => ({
+    from: jest.fn()
+}));
 
 Date.now = jest.fn(() => 1487076708000);
 
@@ -21,7 +22,7 @@ describe('coinbase account', () => {
         };
     };
 
-    Buffer.from = jest.fn();
+    //Buffer.from = jest.fn();
 
     const coinbaseAccount = new CoinbaseAccount('what', 'yay');
 

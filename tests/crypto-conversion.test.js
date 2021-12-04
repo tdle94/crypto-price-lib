@@ -1,4 +1,3 @@
-import { Buffer } from 'buffer';
 import CryptoConversion from '../src/crypto-conversion';
 import request from '../src/request';
 import convertCurrency from './datas/convert-currency';
@@ -6,7 +5,10 @@ import getCryptoConversion from './datas/get-crypto-conversion';
 import crypto from 'crypto-js';
 
 jest.mock('../src/request');
-jest.mock('Buffer', () => jest.fn());
+jest.mock('Buffer', () => ({
+    from: jest.fn()
+}));
+
 
 Date.now = jest.fn(() => 1487076708000);
 
@@ -20,8 +22,6 @@ describe('crypto conversion', () => {
             }
         };
     };
-
-    Buffer.from = jest.fn();
 
     const cryptoConversion = new CryptoConversion('what', 'yay');
 
