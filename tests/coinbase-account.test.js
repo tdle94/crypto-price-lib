@@ -1,4 +1,4 @@
-import CoinbaseAccount from '../src/coinbase-account';
+import { CoinbaseAccount } from '../src/coinbase-account';
 import coinbaseWallet from './datas/coinbase-wallet';
 import cryptoAddress from './datas/crypto-address';
 import request from '../src/request';

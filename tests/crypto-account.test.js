@@ -1,4 +1,4 @@
-import CryptoAccount from '../src/crypto-account';
+import { CryptoAccount } from '../src/crypto-account';
 import request from '../src/request';
 import allCryptoAccount from './datas/all-crypto-account';
 import singleCryptoAccount from './datas/single-crypto-account';

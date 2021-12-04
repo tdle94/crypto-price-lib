@@ -1,4 +1,4 @@
-import CryptoCurrency from '../src/crypto-currency';
+import { CryptoCurrency } from '../src/crypto-currency';
 import request from '../src/request';
 import allCryptoCurrency from './datas/crypto-currency';
 import singleCryptoCurrency from './datas/gtc-currency';

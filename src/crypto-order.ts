@@ -2,7 +2,7 @@ import { URLQueryItem } from './url-request';
 import { Base } from './base';
 import request from './request';
 
-export default class CryptoOrder extends Base {
+export class CryptoOrder extends Base {
     async getAllFills(orderId?: string, productId?: string, profileId?: string, limit?: number, before?: number, after?: number) {
         const method = 'POST';
         const requestPath = '/fills';

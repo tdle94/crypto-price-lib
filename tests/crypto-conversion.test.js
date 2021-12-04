@@ -1,4 +1,4 @@
-import CryptoConversion from '../src/crypto-conversion';
+import { CryptoConversion } from '../src/crypto-conversion';
 import request from '../src/request';
 import convertCurrency from './datas/convert-currency';
 import getCryptoConversion from './datas/get-crypto-conversion';

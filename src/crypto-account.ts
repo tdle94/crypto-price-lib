@@ -2,7 +2,7 @@ import { URLQueryItem } from './url-request';
 import { Base } from './base';
 import request from './request';
 
-export default class CryptoAccount extends Base {
+export class CryptoAccount extends Base {
     constructor(apiKey, passphrase) {
         super(apiKey, passphrase);
     }

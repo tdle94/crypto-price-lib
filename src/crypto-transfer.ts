@@ -2,7 +2,7 @@ import { URLQueryItem } from './url-request';
 import { Base } from './base';
 import request from './request';
 
-class CryptoTransfer extends Base {
+export class CryptoTransfer extends Base {
     async depositFromCoinbaseAccount(amount: string, coinbaseAccountId: string, currency: string, profileId?: string) {
         const method = 'POST';
         const requestPath = '/deposits/coinbase-account';

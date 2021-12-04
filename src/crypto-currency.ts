@@ -1,7 +1,7 @@
 import request from './request';
 import { Base } from './base';
 
-export default class CryptoCurrency extends Base {
+export class CryptoCurrency extends Base {
     async getAll() {
         const requestPath = '/currencies';
         const method = 'GET';

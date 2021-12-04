@@ -2,7 +2,7 @@ import { URLQueryItem } from './url-request';
 import { Base } from './base';
 import request from './request';
 
-export default class CryptoConversion extends Base {
+export class CryptoConversion extends Base {
     async convertCurrency(from: string, to: string, amount: string, profileId?: string, nonce?: string) {
         const method = 'POST';
         const requestPath = '/conversions';
