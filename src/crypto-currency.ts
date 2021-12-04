@@ -1,5 +1,5 @@
 import request from './request';
-import Base from './base';
+import { Base } from './base';
 
 export default class CryptoCurrency extends Base {
     async getAll() {

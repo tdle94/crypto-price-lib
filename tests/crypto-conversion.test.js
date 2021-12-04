@@ -32,7 +32,7 @@ describe('crypto conversion', () => {
             cryptoConversion
             .convertCurrency('BTC', 'ETH', '1')
             .then(data => {
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/conversions', {
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/conversions', {
                     method: 'POST',
                     headers: {
                       Accept: 'application/json',
@@ -58,7 +58,7 @@ describe('crypto conversion', () => {
             cryptoConversion
             .getAConversion('what')
             .then(data => {
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/conversions/what', {
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/conversions/what', {
                     method: 'GET',
                     headers: {
                       Accept: 'application/json',

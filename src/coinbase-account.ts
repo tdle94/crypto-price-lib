@@ -1,4 +1,4 @@
-import Base from './base';
+import { Base } from './base';
 import request from './request';
 
 export default class CoinbaseAccount extends Base {

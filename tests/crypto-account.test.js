@@ -36,7 +36,7 @@ describe('crypto Account', () => {
             .getAllAccountsForAProfile()
             .then(data => {
                 expect(data[0].id).toEqual('7fd0abc0-e5ad-4cbb-8d54-f2b3f43364da');
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/accounts', { 
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/accounts', { 
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -58,7 +58,7 @@ describe('crypto Account', () => {
             .getSingleAccount(32)
             .then(data => {
                 expect(data.id).toEqual('7fd0abc0-e5ad-4cbb-8d54-f2b3f43364da');
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/accounts/account_id/32', { 
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/accounts/account_id/32', { 
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -80,7 +80,7 @@ describe('crypto Account', () => {
             .getSingleAccountHolds(21)
             .then(data => {
                 expect(data[0].id).toEqual('c5cdd687-2d03-4a87-8dd7-c693a4bb766f');
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/accounts/21/holds', { 
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/accounts/21/holds', { 
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -102,7 +102,7 @@ describe('crypto Account', () => {
             .getSingleAccountLedger(21)
             .then(data => {
                 expect(data[0].id).toEqual('1444415179');
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/accounts/21/ledger', { 
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/accounts/21/ledger', { 
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -124,7 +124,7 @@ describe('crypto Account', () => {
             .getSingleAccountTransfer(23)
             .then(data => {
                 expect(data[0].id).toEqual('19ac524d-8827-4246-a1b2-18dc5ca9472c');
-                expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/accounts/23/transfers', { 
+                expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/accounts/23/transfers', { 
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',

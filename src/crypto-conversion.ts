@@ -1,6 +1,6 @@
 import { URLQueryItem } from './url-request';
+import { Base } from './base';
 import request from './request';
-import Base from './base';
 
 export default class CryptoConversion extends Base {
     async convertCurrency(from: string, to: string, amount: string, profileId?: string, nonce?: string) {

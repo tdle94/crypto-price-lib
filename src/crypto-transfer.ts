@@ -1,6 +1,6 @@
 import { URLQueryItem } from './url-request';
+import { Base } from './base';
 import request from './request';
-import Base from './base';
 
 class CryptoTransfer extends Base {
     async depositFromCoinbaseAccount(amount: string, coinbaseAccountId: string, currency: string, profileId?: string) {

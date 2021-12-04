@@ -4,7 +4,7 @@ import URLRequest from './url-request';
 import crypto from 'crypto-js';
 import RequestOptions from './url-request-option';
 
-export default class Base {
+export class Base {
     urlRequest: URLRequest = new URLRequest();
     apiKey: string;
     passphrase: string;
@@ -15,9 +15,9 @@ export default class Base {
         }
     };
     
-    constructor(apiKey?: string, passphrase?: string) {
+    constructor(apiKey?: string, passphrase?: string, env: Base.Environment = Base.Environment.Sandbox) {
         this.urlRequest.scheme = 'https';
-        this.urlRequest.host = 'api.exchange.coinbase.com';
+        this.urlRequest.host = env;
         this.apiKey = apiKey;
         this.passphrase = passphrase;
     }
@@ -64,5 +64,12 @@ export default class Base {
                 Accept: 'application/json'
             }
         };
+    }
+}
+
+export namespace Base {
+    export enum Environment {
+        Sandbox = 'api-public.sandbox.exchange.coinbase.com',
+        Production = 'api.exchange.coinbase.com'
     }
 }

@@ -14,7 +14,7 @@ describe('crypto currency', () => {
   
       return crypto.getAll().then(data => {  
         expect(data[0].id).toEqual('DASH');
-        expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/currencies', { method: 'GET', headers: { Accept: 'application/json' } });
+        expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/currencies', { method: 'GET', headers: { Accept: 'application/json' } });
       });
     });
   });
@@ -25,7 +25,7 @@ describe('crypto currency', () => {
   
       return crypto.get('GTC').then(data => {  
         expect(data.id).toEqual('GTC');
-        expect(request).toHaveBeenCalledWith('https://api.exchange.coinbase.com/currencies/GTC', { method: 'GET', headers: { Accept: 'application/json' } });
+        expect(request).toHaveBeenCalledWith('https://api-public.sandbox.exchange.coinbase.com/currencies/GTC', { method: 'GET', headers: { Accept: 'application/json' } });
       });
     });
   });
