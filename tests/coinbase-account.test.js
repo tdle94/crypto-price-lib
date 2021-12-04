@@ -22,8 +22,6 @@ describe('coinbase account', () => {
         };
     };
 
-    //Buffer.from = jest.fn();
-
     const coinbaseAccount = new CoinbaseAccount('what', 'yay');
 
     describe('coinbase wallets', () => {
