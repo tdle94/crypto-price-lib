@@ -21,23 +21,23 @@ export class Base {
         this.passphrase = passphrase;
     }
 
-    configureHeaderOptions(method: string, requestPath: string, requestBody: {} = {}, urlQueryItems: URLQueryItem[] = []) {
+    configureHeaderWithRequestBodyAndQueryParams(method: string, requestPath: string, requestBody: {} = {}, urlQueryItems: URLQueryItem[] = []) {
         const timestamp = Date.now()
         
-        this.configureHeader(method, requestPath);
+        this.configureBasicHeader(method, requestPath);
 
         this.urlRequest.queryItems = urlQueryItems;
         
-        if (requestBody !== undefined && Object.keys(requestBody).length > 0) {
+        if (requestBody !== undefined && requestBody !== null && Object.keys(requestBody).length > 0) {
             this.options.body = JSON.stringify(requestBody);
             this.options.headers['Content-Type'] = 'application/json';
         }
 
-        if (this.apiKey !== undefined) {
+        if (this.apiKey !== undefined && this.apiKey !== null) {
             this.options.headers['cb-access-key'] = this.apiKey;
         }
 
-        if (this.passphrase !== undefined) {
+        if (this.passphrase !== undefined && this.passphrase !== null) {
             this.options.headers['cb-access-passphrase'] = this.passphrase;
         }
 
@@ -54,7 +54,7 @@ export class Base {
 
     }
 
-    configureHeader(method: string, requestPath: string) {
+    configureBasicHeader(method: string, requestPath: string) {
         this.urlRequest.queryItems = [];
         this.urlRequest.path = requestPath;
         this.options = {

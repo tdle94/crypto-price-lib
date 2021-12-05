@@ -3,15 +3,11 @@ import { Base } from './base';
 import request from './request-service/request';
 
 export class CryptoAccount extends Base {
-    constructor(apiKey, passphrase) {
-        super(apiKey, passphrase);
-    }
-
     async getAllAccountsForAProfile() {
         const method = 'GET';
         const requestPath = '/accounts';
         
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -20,7 +16,7 @@ export class CryptoAccount extends Base {
         const method = 'GET';
         const requestPath = `/accounts/account_id/${id}`;
 
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(),this.options);
     }
@@ -35,7 +31,7 @@ export class CryptoAccount extends Base {
             new URLQueryItem('limit', limit)
         ];
 
-        this.configureHeaderOptions(method, requestPath, {}, queryItems);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -53,7 +49,7 @@ export class CryptoAccount extends Base {
             new URLQueryItem('profile_id', profileId)
         ];
 
-        this.configureHeaderOptions(method, requestPath, {}, queryItems);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -69,7 +65,7 @@ export class CryptoAccount extends Base {
             new URLQueryItem('type', type)
         ];
 
-        this.configureHeaderOptions(method, requestPath, {}, queryItems);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }

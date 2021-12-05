@@ -6,7 +6,7 @@ export class CoinbaseAccount extends Base {
         const method = 'GET';
         const requestPath = '/coinbase-accounts';
 
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -15,7 +15,7 @@ export class CoinbaseAccount extends Base {
         const method = 'POST';
         const requestPath = `/coinbase-accounts/${id}/addresses`;
 
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
         
         return request(this.urlRequest.getURLString(), this.options);
     }

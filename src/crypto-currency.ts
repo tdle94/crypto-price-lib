@@ -6,7 +6,7 @@ export class CryptoCurrency extends Base {
         const requestPath = '/currencies';
         const method = 'GET';
 
-        super.configureHeader(method, requestPath);
+        super.configureBasicHeader(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -15,7 +15,7 @@ export class CryptoCurrency extends Base {
         const requestPath = `/currencies/${currencyId}`;
         const method = 'GET';
 
-        super.configureHeader(method, requestPath);
+        super.configureBasicHeader(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }

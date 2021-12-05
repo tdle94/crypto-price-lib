@@ -14,7 +14,7 @@ export class CryptoConversion extends Base {
             profile_id: profileId
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
         
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -26,7 +26,7 @@ export class CryptoConversion extends Base {
             new URLQueryItem('profile_id', profileId)
         ];
 
-        this.configureHeaderOptions(method, requestPath, {}, queryItems);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }

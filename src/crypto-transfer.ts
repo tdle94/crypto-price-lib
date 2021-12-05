@@ -13,7 +13,7 @@ export class CryptoTransfer extends Base {
             coinbase_account_id: coinbaseAccountId
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -28,7 +28,7 @@ export class CryptoTransfer extends Base {
             payment_method_id: paymentMethodId,
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -37,7 +37,7 @@ export class CryptoTransfer extends Base {
         const method = 'GET';
         const requestPath = '/payment-methods';
         
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -46,7 +46,7 @@ export class CryptoTransfer extends Base {
         const method = 'GET';
         const requestPath = '/transfers';
         
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -55,7 +55,7 @@ export class CryptoTransfer extends Base {
         const method = 'GET';
         const requestPath = `/transfers/${transferId}`;
 
-        this.configureHeaderOptions(method, requestPath);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -70,7 +70,7 @@ export class CryptoTransfer extends Base {
             coinbase_account_id: coinbaseAccountId
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -90,7 +90,7 @@ export class CryptoTransfer extends Base {
             two_factor_code: towFactorCode,
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -103,7 +103,7 @@ export class CryptoTransfer extends Base {
             new URLQueryItem('crypto_address', cryptoAddress)
         ];
 
-        this.configureHeaderOptions(method, requestPath, {}, queryItems);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, {}, queryItems);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
@@ -118,7 +118,7 @@ export class CryptoTransfer extends Base {
             payment_method_id: paymentMethodId,
         };
 
-        this.configureHeaderOptions(method, requestPath, requestBody);
+        this.configureHeaderWithRequestBodyAndQueryParams(method, requestPath, requestBody);
 
         return request(this.urlRequest.getURLString(), this.options);
     }
