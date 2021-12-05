@@ -62,7 +62,7 @@ export class CryptoTransfer extends Base {
 
     async withdrawToCoinbaseAccount(amount: string, coinbaseAccountId: string, currency: string, profileId?: string) {
         const method = 'POST';
-        const requestPath = "/withdrawals/coinbase-account";
+        const requestPath = '/withdrawals/coinbase-account';
         const requestBody: CryptoTransfer.CoinbaseAccountBody = {
             amount,
             currency,
@@ -77,7 +77,7 @@ export class CryptoTransfer extends Base {
 
     async withdrawToCryptoAddress(amount: string, currency: string, cryptoAddress: string, profileId?: string, destinationTag?: string, noDestinationTag?: boolean, towFactorCode?: string, nonce?: number, fee?: string) {
         const method = 'POST';
-        const requestPath = "/withdrawals/crypto";
+        const requestPath = '/withdrawals/crypto';
         const requestBody: CryptoTransfer.CryptoAddressBody = {
             amount,
             currency,
@@ -97,7 +97,7 @@ export class CryptoTransfer extends Base {
 
     async getFeeEstimateForCryptoWithdrawal(currency?: string, cryptoAddress?: string) {
         const method = 'GET';
-        const requestPath = "/withdrawals/fee-estimate";
+        const requestPath = '/withdrawals/fee-estimate';
         const queryItems = [
             new URLQueryItem('currency', currency),
             new URLQueryItem('crypto_address', cryptoAddress)
@@ -110,7 +110,7 @@ export class CryptoTransfer extends Base {
 
     async withdrawToPaymentMethod(amount: string, paymentMethodId: string, currency: string, profileId?: string) {
         const method = 'POST';
-        const requestPath = "/withdrawals/payment-method";
+        const requestPath = '/withdrawals/payment-method';
         const requestBody: CryptoTransfer.PaymentMethodBody = {
             amount,
             currency,
