@@ -5,7 +5,7 @@ import singleCryptoAccount from './datas/single-crypto-account';
 import singleCryptoAccountHolds from './datas/single-crypto-account-holds';
 import singleCryptoAccountLedger from './datas/single-crypto-account-ledger';
 import singleCryptoAccountTransfer from './datas/single-crypto-account-transfer';
-import crypto from 'crypto-js';
+import crypto from 'crypto';
 
 jest.mock('../src/request');
 jest.mock('Buffer', () => ({

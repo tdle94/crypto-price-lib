@@ -1,7 +1,7 @@
 import { CryptoTransfer } from '../src/crypto-transfer';
 import request from '../src/request';
 import depositFromCoinBaseAccount from './datas/deposit-from-coinbase-account';
-import crypto from 'crypto-js';
+import crypto from 'crypto';
 
 jest.mock('../src/request');
 jest.mock('Buffer', () => ({
@@ -46,4 +46,8 @@ describe('crypto currency', () => {
             });
         });
     });
+
+    // describe('deposit from payment method', () => {
+        
+    // });
 });

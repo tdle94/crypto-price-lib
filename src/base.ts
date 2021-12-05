@@ -1,7 +1,7 @@
 import { Buffer } from 'buffer';
 import { URLQueryItem as queryItems } from './url-request';
 import URLRequest from './url-request';
-import crypto from 'crypto-js';
+import crypto from 'crypto';
 import RequestOptions from './url-request-option';
 
 export class Base {

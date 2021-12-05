@@ -2,7 +2,7 @@ import { CoinbaseAccount } from '../src/coinbase-account';
 import coinbaseWallet from './datas/coinbase-wallet';
 import cryptoAddress from './datas/crypto-address';
 import request from '../src/request';
-import crypto from 'crypto-js';
+import crypto from 'crypto';
 
 jest.mock('../src/request', () => jest.fn());
 jest.mock('Buffer', () => ({
