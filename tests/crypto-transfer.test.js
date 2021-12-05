@@ -1,5 +1,5 @@
 import { CryptoTransfer } from '../src/crypto-transfer';
-import request from '../src/request';
+import request from '../src/request-service/request';
 import depositFromCoinBaseAccount from './datas/deposit-from-coinbase-account';
 import allPaymentMethods from './datas/all-payment-methods';
 import allTransfers from './datas/all-transfers';
@@ -10,7 +10,7 @@ import feeEstimateForCryptoWithdrawal from './datas/fee-estimate-for-crypto-with
 import withdrawToPaymentMethod from './datas/withdraw-to-payment-method';
 import crypto from 'crypto';
 
-jest.mock('../src/request');
+jest.mock('../src/request-service/request');
 jest.mock('Buffer', () => ({
     from: jest.fn()
 }));

@@ -1,10 +1,10 @@
 import { CryptoConversion } from '../src/crypto-conversion';
-import request from '../src/request';
+import request from '../src/request-service/request';
 import convertCurrency from './datas/convert-currency';
 import getCryptoConversion from './datas/get-crypto-conversion';
 import crypto from 'crypto';
 
-jest.mock('../src/request');
+jest.mock('../src/request-service/request');
 jest.mock('Buffer', () => ({
     from: jest.fn()
 }));

@@ -1,9 +1,9 @@
 import { CryptoCurrency } from '../src/crypto-currency';
-import request from '../src/request';
+import request from '../src/request-service/request';
 import allCryptoCurrency from './datas/crypto-currency';
 import singleCryptoCurrency from './datas/gtc-currency';
 
-jest.mock('../src/request');
+jest.mock('../src/request-service/request');
 
 describe('crypto currency', () => {
   const crypto = new CryptoCurrency();

@@ -1,5 +1,5 @@
 import { CryptoAccount } from '../src/crypto-account';
-import request from '../src/request';
+import request from '../src/request-service/request';
 import allCryptoAccount from './datas/all-crypto-account';
 import singleCryptoAccount from './datas/single-crypto-account';
 import singleCryptoAccountHolds from './datas/single-crypto-account-holds';
@@ -7,7 +7,7 @@ import singleCryptoAccountLedger from './datas/single-crypto-account-ledger';
 import singleCryptoAccountTransfer from './datas/single-crypto-account-transfer';
 import crypto from 'crypto';
 
-jest.mock('../src/request');
+jest.mock('../src/request-service/request');
 jest.mock('Buffer', () => ({
     from: jest.fn()
 }));
