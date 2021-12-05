@@ -1,4 +1,4 @@
-import request from './request';
+import request from './request-service/request';
 import { Base } from './base';
 
 export class CryptoCurrency extends Base {

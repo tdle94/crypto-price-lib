@@ -1,5 +1,5 @@
 import { Base } from './base';
-import request from './request';
+import request from './request-service/request';
 
 export class CoinbaseAccount extends Base {
     async getAllCoinbaseWallets() {

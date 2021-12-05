@@ -1,8 +1,7 @@
 import { Buffer } from 'buffer';
-import { URLQueryItem as queryItems } from './url-request';
-import URLRequest from './url-request';
+import URLRequest, { URLQueryItem } from './request-service/url-request';
 import crypto from 'crypto';
-import RequestOptions from './url-request-option';
+import RequestOptions from './request-service/url-request-option';
 
 export class Base {
     urlRequest: URLRequest = new URLRequest();
@@ -22,7 +21,7 @@ export class Base {
         this.passphrase = passphrase;
     }
 
-    configureHeaderOptions(method: string, requestPath: string, requestBody: {} = {}, urlQueryItems: queryItems[] = []) {
+    configureHeaderOptions(method: string, requestPath: string, requestBody: {} = {}, urlQueryItems: URLQueryItem[] = []) {
         const timestamp = Date.now()
         
         this.configureHeader(method, requestPath);
